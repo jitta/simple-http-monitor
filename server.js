@@ -13,7 +13,7 @@ const auth = function (req, res, next) {
   const credentials = basicAuth(req)
   if (!credentials) {
     res.setHeader('WWW-Authenticate', 'Basic realm="Auth me please!"')
-    res.end()    
+    return res.status(401).end()    
   }
   if (credentials.name !== HTTP_USER || credentials.pass !== HTTP_PASS) {
     res.setHeader('WWW-Authenticate', 'Basic realm="Auth me please!"')
